@@ -1,4 +1,26 @@
-head{
+h1{
     text-align: center;
-    color: blue;
+    color: rgb(255, 255, 255);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+body{
+    background-color:rgb(238, 139, 207);
+    font-family: serif;
+    font: georgia;
+}
+.image-container{
+    position: relative;
+    display:inline-block;
+}
+.image-container img{
+    width:100%;
+    height:auto;
+}
+.image-container gay{
+    position:absolute;
+    top:425px;
+    left: 165px;x;
+    border:2px solid #e91780
+    padding:10px; 
+    background-color:rgba(255,255,255,0.6);
 }
