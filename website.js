@@ -105,23 +105,102 @@ const stateIncomeTaxes = {
     "WI": 3.54, // Wisconsin (3.54% minimum)
     "WY": 0   // Wyoming (no state income tax)
 };
+const stateRetirementSavings = {
+    "AL": 800000, // Alabama
+    "AK": 1000000, // Alaska
+    "AZ": 850000, // Arizona
+    "AR": 750000, // Arkansas
+    "CA": 1500000, // California
+    "CO": 1200000, // Colorado
+    "CT": 1300000, // Connecticut
+    "DE": 1000000, // Delaware
+    "DC": 1400000, // District of Columbia
+    "FL": 900000, // Florida
+    "GA": 850000, // Georgia
+    "HI": 1800000, // Hawaii
+    "ID": 800000, // Idaho
+    "IL": 1100000, // Illinois
+    "IN": 750000, // Indiana
+    "IA": 800000, // Iowa
+    "KS": 750000, // Kansas
+    "KY": 800000, // Kentucky
+    "LA": 800000, // Louisiana
+    "ME": 850000, // Maine
+    "MD": 1300000, // Maryland
+    "MA": 1500000, // Massachusetts
+    "MI": 900000, // Michigan
+    "MN": 1000000, // Minnesota
+    "MS": 750000, // Mississippi
+    "MO": 850000, // Missouri
+    "MT": 800000, // Montana
+    "NE": 800000, // Nebraska
+    "NV": 900000, // Nevada
+    "NH": 1100000, // New Hampshire
+    "NJ": 1400000, // New Jersey
+    "NM": 850000, // New Mexico
+    "NY": 1500000, // New York
+    "NC": 900000, // North Carolina
+    "ND": 750000, // North Dakota
+    "OH": 850000, // Ohio
+    "OK": 750000, // Oklahoma
+    "OR": 1200000, // Oregon
+    "PA": 1000000, // Pennsylvania
+    "RI": 1300000, // Rhode Island
+    "SC": 800000, // South Carolina
+    "SD": 750000, // South Dakota
+    "TN": 800000, // Tennessee
+    "TX": 950000, // Texas
+    "UT": 1000000, // Utah
+    "VT": 950000, // Vermont
+    "VA": 1200000, // Virginia
+    "WA": 1200000, // Washington
+    "WV": 750000, // West Virginia
+    "WI": 1000000, // Wisconsin
+    "WY": 800000, // Wyoming
+};
 function run(){
-    alert("hey");
-    let state=document.getElementById('state').value;
+    let state=document.getElementById('states').value;
+    let age=document.getElementById('age').value;
     let option=document.getElementById("accountpicked").value;
-    let amountcontributed=document.getElementById("investment").value;
+    let contribute=document.getElementById("investment").value;
     let investment=document.getElementById("contribution type").value;
-    document.getElementById('output').innerHTML = state;
-    if(option="RIRA"){
+    var total=0;
+    var interest=0.03;
+    if (!state || !option || isNaN(contribute) || contribute<= 0 || !investment) {
+        alert("Please fill out all fields correctly.");
+        return;
+    }
+    if(option==="RIRA"){
+        let time=57-age;
+        if(investment==0){
+            var total=contribute;
+            var target=stateRetirementSavings[state]/((1+0.07)**time)
+
+
+        }
+        if(investment>0){
+            total=contribute * (((1 + (0.07 / investment)) ** (investment * time) - 1) / (0.07 / investment));
+            total=Math.round(total);
+            var target = (stateRetirementSavings[state] * (0.07 / investment)) / ((1 + (0.07 / investment)) ** (investment * time) - 1);
+        }
+        total=total/((1+0.02)**time);
+        if(total>=stateRetirementSavings[state]){
+            document.getElementById('output').innerHTML =`WOW you did great planning for the future saving a total of $${total} which is enough to live comfortably in the state of ${state} at the age of 57`;
+        }
+        if(total<stateRetirementSavings[state]){
+            target=Math.round(target);
+            document.getElementById('output').innerHTML =`You have saved a total of $${total} which is great but accordinng to data to retire at 57 in the state of ${state} you may need $${stateRetirementSavings[state]} so we reccomend upping your contribution to $${target} `;
+        }
+        return;
 
     }
-    if(option="TIRA"){
+    if(option==="TIRA"){
 
     }
-    if(option="HSA"){
+    if(option==="HSA"){
 
     }
-    if(option="R401k"){
+    if(option==="R401k"){
 
     }
 

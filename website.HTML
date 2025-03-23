@@ -17,6 +17,9 @@ INVEST IN YOUR FUTURE!
 </div>
 <p1>
 <fieldset>
+<input id="age" type="text" placeholder="age">
+<br>
+<br>
 <select id="accountpicked">
     <option>Select savings account</option>
     <option value="RIRA">Roth IRA</option>
@@ -89,25 +92,26 @@ INVEST IN YOUR FUTURE!
 <br>
 <select id="contribution type">
     
-    <option value="1">One Time </option>
-    <option value="2">Monthly </option>
-    <option value="3">Annual </option>
+    <option value="0">One Time </option>
+    <option value="12">Monthly </option>
+    <option value="1">Annual </option>
 </select>
-<input id="investment" type="text" name="investment">
+<input type="number" id="investment" name="quantity" min="1" placeholder="contribution">
 <br>
 <br>
-<script src= website.js></script>
 <button type="button" id="submit">Submit</button>
 
 
 </fieldset>
+
 </p1>
 <p2>
 
 </p2>
-<div id="output"></div>
+<div id='output'></div>
 
 </html>
 
 </div>
+<script src= website.js></script>
 </body>
